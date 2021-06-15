@@ -3,6 +3,7 @@ import cors from "cors";
 import mongoose from "mongoose";
 import 'dotenv/config';
 import userRoutes from "./routes/user.js"
+import noteRoutes from "./routes/note.js"
 
 const uri = process.env.CONNECTION_URI;
 const PORT = process.env.PORT || 5000;
@@ -10,6 +11,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 app.use("/users", userRoutes)
+app.use("/note", noteRoutes)
 
 mongoose.connect(uri, {
         useNewUrlParser: true,
