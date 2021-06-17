@@ -1,4 +1,5 @@
 import Note from '../models/note.js';
+import mongoose from 'mongoose';
 
 export const createNote = async (req, res) => {
 
@@ -22,6 +23,25 @@ export const createNote = async (req, res) => {
     }
 
 }
+
+export const deleteNote = async (req, res) => {
+
+    if (!req.userId) return res.json({
+        message: "Unauthenticated"
+    });
+
+    const {id} = req.params;
+
+    if(!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send('No Notes with that id')
+
+    await Note.findByIdAndDelete(id);
+
+    res.json({message : 'Note Deleted!'})
+    
+
+}
+
+
 
 export const getNotes = async (req, res) => {
 
