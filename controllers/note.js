@@ -41,6 +41,24 @@ export const deleteNote = async (req, res) => {
 
 }
 
+export const updateNote = async (req, res) => {
+
+    if (!req.userId) return res.json({
+        message: "Unauthenticated"
+    });
+
+    const {id} = req.params;
+    const note = req.body;
+
+    if(!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send('No Notes with that id')
+
+    const updatedNote = await Note.findByIdAndUpdate(id,note, {new : true} );
+
+    res.json(updatedNote)
+    
+
+}
+
 
 
 export const getNotes = async (req, res) => {
