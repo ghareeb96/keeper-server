@@ -27,6 +27,7 @@ export const signin = async (req, res) => {
             email: existingUser.email,
             id: existingUser._id
         }, "strongPassword", {
+            expiresIn : '1h'
         })
 
         res.status(200).json({
@@ -79,6 +80,7 @@ export const signup = async (req, res) => {
             email: result.email,
             id: result._id
         }, "strongPassword", {
+            expiresIn : '1h'
         })
 
         res.status(200).json({
