@@ -52,7 +52,8 @@ export const signup = async (req, res) => {
         password,
         confirmPassword,
         firstName,
-        lastName
+        lastName,
+        profile_picture
     } = req.body;
 
     try {
@@ -73,7 +74,8 @@ export const signup = async (req, res) => {
         const result = await User.create({
             email,
             password: hashedPassword,
-            name: `${firstName} ${lastName}`
+            name: `${firstName} ${lastName}`,
+            profile_picture
         })
 
         const token = jwt.sign({
@@ -94,4 +96,18 @@ export const signup = async (req, res) => {
             message: "Something went wrong!"
         })
     }
+}
+
+
+export const updatePicture = async(req, res)=>{
+    if (!req.userId) return res.json({
+        message: "Unauthenticated"
+    });
+
+    const  {id} = req.params
+    const newUser = req.body;
+
+    const updatedUser = await User.findByIdAndUpdate(id,newUser, {new : true} )
+
+    res.json(updatedUser);
 }

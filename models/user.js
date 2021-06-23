@@ -13,6 +13,9 @@ const userSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    profile_picture : {
+        type : String
+    },
     id: {
         type: String
     }

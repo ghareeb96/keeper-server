@@ -59,6 +59,25 @@ export const updateTask = async (req, res) => {
 
 }
 
+export const completeTask = async (req, res) => {
+
+    if (!req.userId) return res.json({
+        message: "Unauthenticated"
+    });
+
+    const {id} = req.params;
+    const task = req.body;
+    const newTask = {...task, is_completed : !task.is_completed }
+
+    if(!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send('No Notes with that id')
+
+    const updatedTask = await Task.findByIdAndUpdate(id,newTask, {new : true} );
+
+    res.json(updatedTask)
+    
+
+}
+
 export const getTasks = async (req, res) => {
 
     if (!req.userId) return res.json({
