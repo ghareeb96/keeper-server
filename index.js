@@ -17,6 +17,9 @@ app.use("/users", userRoutes)
 app.use("/note", noteRoutes)
 app.use("/reminder", reminderRoutes)
 app.use("/task", taskRoutes)
+app.get('/', (req, res)=>{
+    res.send('Hello to Keeper API')
+})
 
 mongoose.connect(uri, {
         useNewUrlParser: true,
