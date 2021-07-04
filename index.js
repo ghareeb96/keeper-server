@@ -17,9 +17,7 @@ app.use("/users", userRoutes)
 app.use("/note", noteRoutes)
 app.use("/reminder", reminderRoutes)
 app.use("/task", taskRoutes)
-app.get('/', (req, res)=>{
-    res.send('Hello to Keeper API')
-})
+
 
 if(process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'staging'){
     app.use(express.static('client/build'))
