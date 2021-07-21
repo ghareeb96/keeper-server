@@ -14,13 +14,13 @@ export const signin = async (req, res) => {
         });
 
         if (!existingUser) return res.status(404).json({
-            message: "User doesn't exist."
+            message: "User doesn't exist"
         })
 
         const isPasswordCorrect = await bcrypt.compare(password, existingUser.password);
 
         if (!isPasswordCorrect) return res.status(400).json({
-            message: "Invalid credentials"
+            message: "Incorrect Password"
         });
 
         const token = jwt.sign({
@@ -62,7 +62,7 @@ export const signup = async (req, res) => {
         });
 
         if (existingUser) return res.status(404).json({
-            message: "User already exist."
+            message: "User already exist"
         })
 
         if (password !== confirmPassword) return res.status(400).json({
