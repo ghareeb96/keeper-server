@@ -2,7 +2,9 @@ import express from "express";
 import {
     signin,
     signup,
-    updatePicture
+    // updatePicture,
+    // changeTheme
+    updateUser
 } from "../controllers/user.js"
 import auth from '../middleware/auth.js'
 
@@ -11,6 +13,7 @@ const router = express.Router();
 
 router.post("/signin", signin);
 router.post("/signup", signup);
-router.patch("/updatePic/:id", auth, updatePicture);
+router.patch("/updateUser/:id", auth, updateUser);
+// router.patch("/changeTheme/:id", auth, changeTheme);
 
 export default router;

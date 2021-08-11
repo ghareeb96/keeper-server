@@ -16,6 +16,9 @@ const userSchema = mongoose.Schema({
     profile_picture : {
         type : String
     },
+    darkTheme:{
+        type : Boolean
+    },
     id: {
         type: String
     }

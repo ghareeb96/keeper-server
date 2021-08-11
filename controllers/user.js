@@ -26,8 +26,7 @@ export const signin = async (req, res) => {
         const token = jwt.sign({
             email: existingUser.email,
             id: existingUser._id
-        }, "strongPassword", {
-        })
+        }, "strongPassword", {})
 
         res.status(200).json({
             result: existingUser,
@@ -80,8 +79,7 @@ export const signup = async (req, res) => {
         const token = jwt.sign({
             email: result.email,
             id: result._id
-        }, "strongPassword", {
-        })
+        }, "strongPassword", {})
 
         res.status(200).json({
             result,
@@ -97,15 +95,36 @@ export const signup = async (req, res) => {
 }
 
 
-export const updatePicture = async(req, res)=>{
+export const updateUser = async (req, res) => {
     if (!req.userId) return res.json({
         message: "Unauthenticated"
     });
 
-    const  {id} = req.params
+    const {
+        id
+    } = req.params
     const newUser = req.body;
 
-    const updatedUser = await User.findByIdAndUpdate(id,newUser, {new : true} )
-
+    const updatedUser = await User.findByIdAndUpdate(id, newUser, {
+        new: true
+    })
     res.json(updatedUser);
 }
+
+
+// export const changeTheme = async (req, res) => {
+//     if (!req.userId) return res.json({
+//         message: "Unauthenticated"
+//     });
+//     const {
+//         id
+//     } = req.params
+//     console.log(id)
+//     const newUser = req.body
+
+//     const updatedUser = await User.findByIdAndUpdate(id, newUser, {
+//         new: true
+//     })
+//     console.log(updatedUser.darkTheme)
+//     res.json(updatedUser);
+// }
