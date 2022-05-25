@@ -13,15 +13,23 @@ const userSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    profile_picture : {
-        type : String
+    profile_picture: {
+        type: String
     },
-    darkTheme:{
-        type : Boolean
+    darkTheme: {
+        type: Boolean
     },
+    mobile: {
+        type: String
+    },
+    birthdate: {
+        type: Date
+    },  
     id: {
         type: String
     }
+}, {
+    timestamps: true
 })
 
 export default mongoose.model('user', userSchema)

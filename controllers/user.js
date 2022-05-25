@@ -51,9 +51,10 @@ export const signup = async (req, res) => {
         confirmPassword,
         firstName,
         lastName,
-        profile_picture
+        profile_picture,
+        mobile,
+        birthdate
     } = req.body;
-
     try {
         const existingUser = await User.findOne({
             email
@@ -73,7 +74,9 @@ export const signup = async (req, res) => {
             email,
             password: hashedPassword,
             name: `${firstName} ${lastName}`,
-            profile_picture
+            profile_picture,
+            mobile,
+            birthdate
         })
 
         const token = jwt.sign({
@@ -110,21 +113,3 @@ export const updateUser = async (req, res) => {
     })
     res.json(updatedUser);
 }
-
-
-// export const changeTheme = async (req, res) => {
-//     if (!req.userId) return res.json({
-//         message: "Unauthenticated"
-//     });
-//     const {
-//         id
-//     } = req.params
-//     console.log(id)
-//     const newUser = req.body
-
-//     const updatedUser = await User.findByIdAndUpdate(id, newUser, {
-//         new: true
-//     })
-//     console.log(updatedUser.darkTheme)
-//     res.json(updatedUser);
-// }
